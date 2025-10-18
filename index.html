@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
             scroll-behavior: smooth;
         }
         
-/* Navigation */
+        /* Navigation - FIXED VERSION */
         .navbar {
             position: fixed;
             top: 0;
@@ -59,11 +60,11 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 12px 20px;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 65px;
         }
         
         .nav-logo {
@@ -74,9 +75,9 @@
         }
         
         .nav-logo img {
-            height: 50px;
+            height: 48px;
             width: auto;
-            max-width: 150px;
+            max-width: 140px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
@@ -135,7 +136,7 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--dark);
             cursor: pointer;
             padding: 5px;
@@ -143,9 +144,10 @@
             flex-shrink: 0;
         }
         
-        /* Hero Section */
+        /* Hero Section - FIXED */
         .hero {
-            padding: 100px 20px 60px;
+            margin-top: 65px;
+            padding: 60px 20px 60px;
             background: linear-gradient(135deg, var(--remax-blue) 0%, #0048c0 100%);
             position: relative;
             overflow: hidden;
@@ -274,13 +276,13 @@
         }
         
         .profile-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 24px;
-            padding: 32px;
-            text-align: center;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: transparent;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: none;
         }
         
         .profile-image {
@@ -295,6 +297,30 @@
             color: var(--remax-blue);
             margin: 0 auto 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .profile-image.high-quality {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: none;
+            background: transparent;
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+            filter: contrast(105%) saturate(110%) brightness(103%);
+            transition: transform 0.4s ease, filter 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+            filter: contrast(110%) saturate(115%) brightness(105%);
         }
         
         .quick-contact {
@@ -611,6 +637,61 @@
             color: var(--remax-red);
         }
         
+        /* Contact Cards with Images - Enhanced */
+        .contact-card-with-image {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .contact-card-with-image:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(255,255,255,0.5);
+        }
+        
+        .contact-card-with-image:hover > div:first-child {
+            background: linear-gradient(135deg, rgba(0,61,165,0.95), rgba(200,16,46,0.95)) !important;
+        }
+        
+        .contact-card-with-image i {
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card-with-image:hover i {
+            transform: scale(1.15);
+        }
+        
+        /* Map Card Enhanced */
+        .contact-card:has(iframe) {
+            transition: all 0.4s ease;
+        }
+        
+        .contact-card:has(iframe):hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255,255,255,0.4);
+        }
+        
+        .contact-card:has(iframe):hover::after {
+            content: '📍 Click to view in Google Maps';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,61,165,0.95);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 10;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
         /* Footer */
         .footer {
             background: var(--dark);
@@ -649,28 +730,81 @@
             opacity: 0.6;
         }
         
-        /* Mobile Menu */
+        /* Mobile Menu - COMPLETE FIX */
         @media (max-width: 768px) {
+            .navbar {
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            }
+            
+            .nav-container {
+                padding: 8px 15px;
+                height: 60px;
+            }
+            
+            .nav-logo img {
+                height: 40px;
+                max-width: 110px;
+            }
+            
             .menu-toggle {
                 display: block;
+                order: 3;
+            }
+            
+            .lang-toggle {
+                order: 2;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .nav-right {
+                gap: 10px;
             }
             
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 60px;
                 left: 0;
                 right: 0;
                 background: white;
                 flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                transform: translateY(-120%);
-                transition: transform 0.3s;
-                gap: 16px;
+                padding: 0;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease-in-out;
+                gap: 0;
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+                z-index: 9998;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid #f1f5f9;
+            }
+            
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 18px 20px;
+                font-size: 1rem;
+                text-align: center;
             }
             
             .nav-links.active {
                 transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero {
+                margin-top: 60px;
+                padding: 40px 20px 40px;
             }
             
             .hero-content {
@@ -700,12 +834,57 @@
                 text-align: center;
             }
             
+            .contact-cards {
+                grid-template-columns: 1fr !important;
+            }
+            
             section {
                 padding: 40px 0;
             }
         }
         
+        /* للشاشات الصغيرة جداً */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 6px 12px;
+                height: 55px;
+            }
+            
+            .nav-logo img {
+                height: 36px;
+                max-width: 100px;
+            }
+            
+            .lang-toggle {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .menu-toggle {
+                font-size: 1.3rem;
+                padding: 4px;
+            }
+            
+            .nav-links {
+                top: 55px;
+            }
+            
+            .nav-links a {
+                padding: 16px 15px;
+                font-size: 0.95rem;
+            }
+            
+            .hero {
+                margin-top: 55px;
+                padding: 30px 15px 30px;
+            }
+        }
+        
         /* RTL Support */
+        [dir="rtl"] .nav-right {
+            flex-direction: row-reverse;
+        }
+        
         [dir="rtl"] .nav-links,
         [dir="rtl"] .cta-buttons,
         [dir="rtl"] .quick-contact {
@@ -715,174 +894,20 @@
         [dir="rtl"] .contact-card {
             flex-direction: row-reverse;
         }
-
-.profile-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: transparent; /* شفاف تمامًا */
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: none; /* مفيش ظل ولا لون */
-}
-
-.profile-image.high-quality {
-  width: 220px; /* 👈 صغّرناها شوية بدل 280 */
-  height: 220px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: none; /* مفيش إطار أبيض */
-  background: transparent;
-}
-
-.avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  image-rendering: high-quality;
-  image-rendering: -webkit-optimize-contrast;
-  filter: contrast(105%) saturate(110%) brightness(103%);
-  transition: transform 0.4s ease, filter 0.3s ease;
-}
-
-.avatar:hover {
-  transform: scale(1.05);
-  filter: contrast(110%) saturate(115%) brightness(105%);
-}
-
-
-/* Navigation Logo Styling */
-.nav-logo {
-    display: flex;
-    align-items: center;
-    height: 50px; /* قللنا الارتفاع */
-}
-
-.nav-logo img {
-    height: 70px; /* كبرنا اللوجو */
-    width: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.nav-logo img:hover {
-    transform: scale(1.05);
-}
-
-/* تعديل الـ navbar container */
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 8px 20px; /* قللنا الـ padding عشان الشريط يبقى أقل ارتفاع */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* استجابة للموبايل */
-@media (max-width: 768px) {
-    .nav-logo {
-        height: 45px;
-    }
-    
-    .nav-logo img {
-        height: 42px;
-    }
-    
-    .nav-container {
-        padding: 8px 15px;
-    }
-}
-
-/* للشاشات الصغيرة جداً */
-@media (max-width: 480px) {
-    .nav-logo img {
-        height: 36px;
-    }
-}
-
-/* Contact Cards with Images - Enhanced */
-.contact-card-with-image {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-}
-
-.contact-card-with-image:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 25px 60px rgba(255,255,255,0.5);
-}
-
-.contact-card-with-image:hover > div:first-child {
-    background: linear-gradient(135deg, rgba(0,61,165,0.95), rgba(200,16,46,0.95)) !important;
-}
-
-.contact-card-with-image i {
-    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
-    transition: transform 0.3s ease;
-}
-
-.contact-card-with-image:hover i {
-    transform: scale(1.15);
-}
-
-/* Phone Ring Animation */
-@keyframes ring {
-    0%, 100% { transform: rotate(0deg); }
-    10%, 30% { transform: rotate(-10deg); }
-    20%, 40% { transform: rotate(10deg); }
-    50% { transform: rotate(0deg); }
-}
-
-/* Map Card Enhanced */
-.contact-card:has(iframe) {
-    transition: all 0.4s ease;
-}
-
-.contact-card:has(iframe):hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(255,255,255,0.4);
-}
-
-.contact-card:has(iframe):hover::after {
-    content: '📍 Click to view in Google Maps';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,61,165,0.95);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    z-index: 10;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-/* Responsive للموبايل */
-@media (max-width: 968px) {
-    .contact-cards {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .contact-card-with-image > div:last-child {
-        min-height: 200px !important;
-    }
-    
-    .contact-card iframe {
-        height: 180px !important;
-    }
-    
-    .contact-card:has(iframe):hover::after {
-        font-size: 0.75rem;
-        padding: 6px 12px;
-    }
-}
+        
+        @media (max-width: 768px) {
+            [dir="rtl"] .nav-links {
+                flex-direction: column;
+            }
+            
+            [dir="rtl"] .menu-toggle {
+                order: 1;
+            }
+            
+            [dir="rtl"] .lang-toggle {
+                order: 2;
+            }
+        }
     </style>
 </head>
 <body>
@@ -890,10 +915,7 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-logo">
-<img src="./images/Remax logo.PNG" alt="REMAX Barah Logo">
-
-
-
+            <img src="./images/Remax logo.PNG" alt="REMAX Barah Logo">
         </div>
         <div class="nav-right">
             <ul class="nav-links">
